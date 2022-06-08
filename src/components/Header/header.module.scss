@@ -1,0 +1,59 @@
+@use '/styles/colors.scss' as c;
+
+// header 容器
+.container {
+  display: flex;
+  flex-direction: row;
+  box-shadow: c.$boxshadow;
+  height: 60px;
+  align-items: center;
+  position: relative;
+
+  // logo
+  .logo {
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 35px;
+      padding: 0 10px;
+    }
+
+    p {
+      font-size: 25px;
+      margin: 0 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+
+  // 主题样式切换按钮
+  .switchThemeBtn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #aeaeae;
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    
+    i {
+      margin: 2px;
+      color: white;
+    }
+  }
+
+}
+
+// linls
+.linkBox {
+  position: relative;
+  left: 50%;
+
+  a {
+    margin: 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: c.$header_color;
+  }
+}

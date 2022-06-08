@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  background-color: #f6f6f6;
+  .swatchelist {
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+    margin: auto;
+  }
+}

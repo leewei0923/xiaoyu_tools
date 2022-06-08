@@ -1,0 +1,6 @@
+# node_modeules
+/node_modules/
+# 配置文件
+package.json
+# eslint
+.eslintrc.js

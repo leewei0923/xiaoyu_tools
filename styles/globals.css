@@ -1,3 +1,5 @@
+@import url("https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css");
+
 html,
 body {
   padding: 0;
@@ -13,4 +15,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --a: #000000;
 }
