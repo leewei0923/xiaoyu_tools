@@ -43,15 +43,34 @@
 
 // 操作区
 .footerOption {
-  input[type='number'] {
-    background-color: transparent;
+ 
+  .input_angle_container {
     width: 40px;
-    outline: none;
     height: 30px;
-    border: none;
     margin: 0 5px;
+    position: relative;
+
+      .input_angle {
+        position: absolute;
+        top: -10px;
+        left: -30px;
+        visibility: hidden;
+      }
+
+      p {
+        position: relative;
+        top: -10px;
+        font-size: 17px;
+        text-align: center;
+      }
   }
 
+  .input_angle_container:hover {
+    .input_angle {
+        visibility: visible;
+      }
+  }
+  
   input[type='number']:focus {
     border-bottom: 2px solid black;
   }
@@ -94,3 +113,28 @@
     transition: width 0.5s linear;
   }
 }
+
+
+
+@media (max-width: 1024px) {
+  .container {
+    width: calc(50% - 30px);
+
+    .palette {
+      width: 200px;
+      height: 200px;
+    } 
+  }
+}
+
+
+@media (max-width: 650px) {
+  .container {
+    width: 100%;
+
+    .palette {
+      width: 200px;
+      height: 200px;
+    } 
+  }
+} 

@@ -63,7 +63,7 @@ export const gradientColors = [
   {
     id: '4',
     name: 'Red Ribbon & Coral',
-    angle: '42deg',
+    angle: '42',
     colors: [
       {
         name: 'Read Ribbon',
@@ -82,7 +82,7 @@ export const gradientColors = [
   {
     id: '5',
     name: 'Deep Cerulean & Caribbean Green',
-    angle: '140deg',
+    angle: '140',
     colors: [
       {
         name: 'Deep Cerulean',
@@ -253,7 +253,7 @@ export const gradientColors = [
   {
     id: '14',
     name: 'Lucky Point & Radical Red',
-    angle: '140deg',
+    angle: '140',
     colors: [
       {
         name: 'Lucky Point',
@@ -329,7 +329,7 @@ export const gradientColors = [
   {
     id: '18',
     name: 'Black Russian & Lavender & Tutu',
-    angle: '13deg',
+    angle: '13',
     colors: [
       {
         name: 'Black Russian',
@@ -373,7 +373,7 @@ export const gradientColors = [
   {
     id: '20',
     name: 'Blue Dianne & Old Rose',
-    angle: '140deg',
+    angle: '140',
     colors: [
       {
         name: 'Blue Dianne',
@@ -392,7 +392,7 @@ export const gradientColors = [
   {
     id: '21',
     name: 'Picton Blue & Turquoise',
-    angle: '140deg',
+    angle: '140',
     colors: [
       {
         name: '#49BCF6',
@@ -411,7 +411,7 @@ export const gradientColors = [
   {
     id: '22',
     name: 'Geraidine & Salomie',
-    angle: '343deg',
+    angle: '343',
     colors: [
       {
         name: 'Geraidine',
@@ -449,7 +449,7 @@ export const gradientColors = [
   {
     id: '24',
     name: 'Riptide & Light Wisteria',
-    angle: '108deg',
+    angle: '108',
     colors: [
       {
         name: 'Riptide',

@@ -53,12 +53,35 @@ export default function Swatches(props: Swatches) {
   }
   init();
 
+
+  /**
+   * theme: input range 改变事件
+   * time: 2022.06.09 
+   * author: leewei
+   */
+  const [rangeValue, setRangeValue] = useState('');
+
+  const onRangeChange = (e:React.ChangeEvent<HTMLInputElement>):void => {
+    setRangeValue(e.target.value);
+  }
+
+  /**
+   * theme: 点击复制粘贴
+   * time: 2022.06.09
+   * author: leewei
+   */
+
+  const onCopyCss = async () => {
+    const backgroundImage = `background-image: linear-gradient(${rangeValue === '' ? angle : rangeValue}deg, ${colorsRef.current[0]},  ${colorsRef.current[1]})`;
+    navigator.clipboard.writeText(backgroundImage).then(() => console.log("成功写入剪贴板"));
+  }
+
   /**
    * useEffect
    */
   useEffect(() => {
     
-  }, [colorText]);
+  }, [colorText,rangeValue]);
 
   return (
     <div className={styles.container}>
@@ -70,15 +93,19 @@ export default function Swatches(props: Swatches) {
         <div
           className={styles.circle}
           style={{
-            backgroundImage: `linear-gradient(${angle}, ${colorsRef.current[0]},  ${colorsRef.current[1]})`
+            backgroundImage: `linear-gradient(${rangeValue === '' ? angle : rangeValue}deg, ${colorsRef.current[0]},  ${colorsRef.current[1]})`
           }}
         ></div>
       </div>
 
       {/* 颜色放置区 */}
       <div className={styles.footerOption}>
-        <RotationOne theme="outline" size="24" fill="#333" defaultValue={angle} />
-        <input type="number" id='input_angle' name='input_angle' min={-360} max={360}  />
+        <RotationOne theme="outline" size="24" fill="#333"  />
+        <div className={styles.input_angle_container}>
+          <input type="range" id='input_angle' step={1} name='input_angle' className={styles.input_angle} onChange={(e) => onRangeChange(e)} min={-360} max={360} defaultValue={angle} />
+          <p>{rangeValue === '' ? angle : rangeValue}°</p>
+        </div>
+        
         {colors.map((item, i) => {
           return (
             <Fragment key={'option' + item.name}>
@@ -98,7 +125,7 @@ export default function Swatches(props: Swatches) {
 
         {/* 复制 */}
 
-        <p className={styles.copyBtn}>Copy CSS</p>
+        <p className={styles.copyBtn} onClick={() => onCopyCss()}>Copy CSS</p>
       </div>
     </div>
   );
