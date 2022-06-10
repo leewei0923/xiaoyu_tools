@@ -109,7 +109,8 @@ export default function Swatches(props: Swatches) {
         {colors.map((item, i) => {
           return (
             <Fragment key={'option' + item.name}>
-              <input
+              <div className={styles.circleBack} style={{background:`${colorsRef.current[i]}`}}>
+                <input
                 type="color"
                 id={item.name}
                 name={item.name}
@@ -118,6 +119,8 @@ export default function Swatches(props: Swatches) {
                 onChange={(e) => onColorChange(e, i)}
                 title={`${item.name} & ${colorsRef.current[i]}`}
               />
+              </div>
+              
               {/* <label htmlFor={item.name}>{item.hex}</label> */}
             </Fragment>
           );
