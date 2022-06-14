@@ -33,9 +33,8 @@ export default function Footer() {
 
         <div className={styles.logo}>
           <Image src="/logo.png" alt="xiaoyu Logo" width={40} height={40} />
-        <span className={styles.logoName}>Xiaoyu's Tools</span>
+          <span className={styles.logoName}>Xiaoyu&apos;s Tools</span>
         </div>
-        
       </div>
       {/* 版权所有 */}
       <p className={styles.statement}>©2022, content by Leewei. All Rights Reserved. The Website by leewei.</p>

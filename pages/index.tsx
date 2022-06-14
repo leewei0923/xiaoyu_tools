@@ -44,8 +44,10 @@ const Home: NextPage = () => {
    * time: 2022.06.07
    */
   useEffect(() => {
+    
     setThemeState(handleStorage.getStorage('theme'));
-    console.log(themeState);
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

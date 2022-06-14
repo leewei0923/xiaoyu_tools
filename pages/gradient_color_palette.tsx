@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
 import Header from '../src/components/Header/Header';
 import Swatches from '../src/components/gradient_color_palette/Swatches';
 import { gradientColors } from '../src/static_data/colorData';
