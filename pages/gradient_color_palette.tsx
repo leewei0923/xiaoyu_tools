@@ -26,7 +26,7 @@ const GradientColorPalette: NextPage = () => {
         <link rel="icon" href="/logo.png" />
       </Head>
 
-      <Header />
+      <Header siteName="GRADIENT COLOR PALETTE" />
 
       <main className={styles.swatchelist}>
         {gradientColors.slice(currentPage * 6 - 6, currentPage * 6).map((item) => {
@@ -36,7 +36,7 @@ const GradientColorPalette: NextPage = () => {
 
       {/* 分页 */}
       <Pagination onChange={(e: number) => onPageChange(e)} pageSize={6} total={gradientColors.length} />
-      
+
       <Footer />
     </div>
   );

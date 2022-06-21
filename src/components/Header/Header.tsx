@@ -4,15 +4,21 @@ import { gradientLinks } from '../../static_data/links';
 import { ThemeContext } from '../../utils/context-manage';
 import styles from './header.module.scss';
 
-const Header = () => {
+interface HeaderProp {
+  siteName:string
+}
+
+const Header = (props:HeaderProp) => {
   const themeState = useContext(ThemeContext);
+
+  const {siteName} = props;
 
   return (
     <div className={styles.container}>
       {/* logo */}
       <div className={styles.logo}>
         <i className="bx bx-palette"></i>
-        <p>gradient color palette</p>
+        <p>{siteName}</p>
       </div>
       {/* link */}
       <div className={styles.linkBox}>

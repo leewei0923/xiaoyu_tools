@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import classnames from 'classnames';
+import { Sun, Moon } from '@icon-park/react';
 import HandleStorage from '../src/utils/HandleStorage';
 import styles from '../styles/Home.module.scss';
 
@@ -26,7 +27,7 @@ const Home: NextPage = () => {
     [styles.container]: true,
     [styles.dark]: themeState === 'dark'
   });
-  
+
   // 点击 switchThemeBtn 事件
   const onChangeTheme = () => {
     if (themeState === 'dark') {
@@ -44,10 +45,9 @@ const Home: NextPage = () => {
    * time: 2022.06.07
    */
   useEffect(() => {
-    
     setThemeState(handleStorage.getStorage('theme'));
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -60,7 +60,11 @@ const Home: NextPage = () => {
 
       <header className={styles.header} onClick={() => onChangeTheme()}>
         <div className={styles.switchThemeBtn}>
-          {themeState === 'dark' ? <i className="bx bxs-sun"></i> : <i className="bx bxs-moon"></i>}
+          {themeState === 'dark' ? (
+            <Sun className={styles.iconpark} theme="filled" size="20" fill="#fff" />
+          ) : (
+            <Moon className={styles.iconpark} theme="filled" size="20" fill="#fff" />
+          )}
         </div>
       </header>
 
@@ -75,10 +79,19 @@ const Home: NextPage = () => {
         </p>
 
         <div className={styles.grid}>
+          {/* gradient color plate */}
           <Link href="/gradient_color_palette">
             <a className={styles.card}>
               <h2>Gradient Color Palette →</h2>
               <p>best gradient color , you can using !</p>
+            </a>
+          </Link>
+
+          {/* component demos */}
+          <Link href="/component_demos">
+            <a className={styles.card}>
+              <h2>Component Demos →</h2>
+              <p>Choosem which you like the componnet to apply to your site !</p>
             </a>
           </Link>
         </div>

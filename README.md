@@ -1,34 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Welcome to Xiaoyu's Tools
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+- gradient Color Palette
+- componentDemos
+  - bytadance_mileStone
 
-```bash
-npm run dev
-# or
-yarn dev
+
+
+## Development history
+
+### bytadance_mileStone
+
+- 第一阶段
+
+  基本完成对应的功能，点击按钮就可以切换内容。
+
+
+
+其中有一段这样的代码看着十分的麻烦，很多代码都是重复的，进行了如下的操作，重构代码。
+
+```typescript
+const onMouseUp = (e: number) => {
+    switch (e) {
+      case 1:
+        if (scaleCarouse2Index >= backgroundData.length - 1) {
+          setScaleCarouse2Index(backgroundData.length - 1);
+        } else {
+          setScaleCarouse2Index(scaleCarouse2Index + e);
+        }
+        setCarouse1OffsetX(0);
+        break;
+      case -1:
+        if (scaleCarouse2Index <= 0) {
+          console.log(scaleCarouse2Index);
+          setScaleCarouse2Index(0);
+        } else {
+          console.log("k")
+          setScaleCarouse2Index(scaleCarouse2Index + e);
+        }
+        setCarouse1OffsetX(0);
+        break;
+      case 0:
+        setScaleCarouse2Index(scaleCarouse2Index);
+        setCarouse1OffsetX(0);
+        break;
+      default:
+        break;
+    }
+    setScaleCarouse2Index(scaleCarouse2Index + e);
+
+    console.log(e);
+  };
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+重新思考之后，寻找重复的语句，尝试复用和删除。然后精简许多，但是很多if-else看着就很头疼
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```typescript
+const onMouseUp = (e: number) => {
+    if (scaleCarouse2Index+e <= 0) {
+      setScaleCarouse2Index(0);
+    } else if (scaleCarouse2Index+e >= backgroundData.length - 1) {
+      setScaleCarouse2Index(backgroundData.length - 1);
+    } else {
+      if (e === 0) {
+        setScaleCarouse2Index(scaleCarouse2Index);
+      } else {
+        setScaleCarouse2Index(scaleCarouse2Index + e);
+      }
+    }
+    setCarouse1OffsetX(0);
+  };
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+今天基本完成这个功能，不过还是需要兼容其他的屏幕，目前在我的电脑上显示正常，还需要更多的测试。接下来适配1000px以下的电脑。
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
