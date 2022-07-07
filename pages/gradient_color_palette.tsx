@@ -23,7 +23,7 @@ const GradientColorPalette: NextPage = () => {
       <Head>
         <title>gradient color palette</title>
         <meta name="description" content="gradient color palette" />
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/xiaoyu_tools/logo.png" />
       </Head>
 
       <Header siteName="GRADIENT COLOR PALETTE" />

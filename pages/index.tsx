@@ -55,7 +55,7 @@ const Home: NextPage = () => {
       <Head>
         <title>xiaoyu&apos;s tools</title>
         <meta name="description" content="xiaoyu's tools" />
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/xiaoyu_tools/logo.png" />
       </Head>
 
       <header className={styles.header} onClick={() => onChangeTheme()}>
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
         <p>
           Powered by
           <span className={styles.logo}>
-            <Image src="/logo.png" alt="xiaoyu Logo" width={40} height={40} />
+            <Image src="/xiaoyu_tools/logo.png" alt="xiaoyu Logo" width={40} height={40} />
           </span>
           <strong>Leewei</strong>
         </p>

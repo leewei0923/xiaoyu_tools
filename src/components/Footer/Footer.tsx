@@ -32,7 +32,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.logo}>
-          <Image src="/logo.png" alt="xiaoyu Logo" width={40} height={40} />
+          <Image src="/xiaoyu_tools/logo.png" alt="xiaoyu Logo" width={40} height={40} />
           <span className={styles.logoName}>Xiaoyu&apos;s Tools</span>
         </div>
       </div>

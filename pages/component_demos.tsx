@@ -13,7 +13,7 @@ const ComponentDemos: NextPage = () => {
       <Head>
         <title>Component demos</title>
         <meta name="description" content="Component demos" />
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/xiaoyu_tools/logo.png" />
       </Head>
 
       <Header siteName="COMPONENT DEMOS" />
