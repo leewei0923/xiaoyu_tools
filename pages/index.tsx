@@ -1,11 +1,13 @@
 import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { useEffect,  useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import classnames from 'classnames';
 import { Sun, Moon } from '@icon-park/react';
 import HandleStorage from '../src/utils/HandleStorage';
+import { useAppSelector, useAppDispatch } from '@src/redux/hooks';
+import { onChangeMode, selectTheme } from '@src/redux/theme/themeSlice';
 import styles from '../styles/Home.module.scss';
 
 const Home: NextPage = () => {
@@ -15,6 +17,8 @@ const Home: NextPage = () => {
    * time: 2022.06.07
    */
   const handleStorage = new HandleStorage();
+  const themeMode = useAppSelector(selectTheme);
+  const dispatch = useAppDispatch();
 
   /**
    * theme: 更改主题样式
@@ -22,7 +26,8 @@ const Home: NextPage = () => {
    * author: leewei
    * modify:
    */
-  const [themeState, setThemeState] = useState('');
+  const [themeState, setThemeState] = useState('light');
+
   const container = classnames({
     [styles.container]: true,
     [styles.dark]: themeState === 'dark'
@@ -33,11 +38,28 @@ const Home: NextPage = () => {
     if (themeState === 'dark') {
       setThemeState('light');
       handleStorage.setStorage('theme', 'light');
+      dispatch(onChangeMode('light'));
     } else {
       setThemeState('dark');
       handleStorage.setStorage('theme', 'dark');
+      dispatch(onChangeMode('dark'));
     }
   };
+
+
+  /**
+   * @description: 初始化加载，保持主题的状态
+   * @return {*}
+   */
+  const initRender = () => {
+    const theme = handleStorage.getStorage('theme');
+
+    if(theme !== 'light') {
+      setThemeState('dark');
+      handleStorage.setStorage('theme', 'dark');
+      dispatch(onChangeMode('dark'));
+    }
+  }
 
   /**
    * theme: useEffect
@@ -45,8 +67,7 @@ const Home: NextPage = () => {
    * time: 2022.06.07
    */
   useEffect(() => {
-    setThemeState(handleStorage.getStorage('theme'));
-
+    initRender();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

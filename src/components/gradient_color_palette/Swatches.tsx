@@ -92,8 +92,9 @@ export default function Swatches(props: Swatches) {
       <div className={styles.palette}>
         <div
           className={styles.circle}
+          //TODO: 增加多个颜色选项，再增加一个单独的颜色
           style={{
-            backgroundImage: `linear-gradient(${rangeValue === '' ? angle : rangeValue}deg, ${colorsRef.current[0]},  ${colorsRef.current[1]})`
+            backgroundImage: `linear-gradient(${rangeValue === '' ? angle : rangeValue}deg, ${colorsRef.current})`
           }}
         ></div>
       </div>

@@ -20,14 +20,13 @@ class HandleStorage {
     return true;
   }
 
-  setStorage<K, T>(key: string, value: T ):void {
+  setStorage<K, T>(key: string, value: string ):void {
     // 判断是否支持localStorage
     if (!this.isSupport()) {
       throw new Error('不支持localStorage');
     }
     
-    const content = JSON.stringify(value);
-    window.localStorage.setItem(`${this.prefix}_${key}`, content);
+    window.localStorage.setItem(`${this.prefix}_${key}`, value);
   }
 
 
