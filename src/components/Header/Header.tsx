@@ -1,17 +1,29 @@
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { gradientLinks } from '../../static_data/links';
-import { ThemeContext } from '../../utils/context-manage';
+import { useAppSelector, useAppDispatch } from '@src/redux/hooks';
+import { onChangeMode, selectTheme } from '@src/redux/theme/themeSlice';
+import HandleStorage from '~/src/utils/HandleStorage';
 import styles from './header.module.scss';
 
 interface HeaderProp {
-  siteName:string
+  siteName: string;
 }
 
-const Header = (props:HeaderProp) => {
-  const themeState = useContext(ThemeContext);
+const Header = (props: HeaderProp) => {
+  /**
+   *
+   * desc: 全局公共部分
+   */
+  const { siteName } = props;
+  const themeState = useAppSelector(selectTheme);
+  const dispatch = useAppDispatch();
+  const handleStorage = new HandleStorage();
 
-  const {siteName} = props;
+  const onChangeThemeMode = () => {
+    dispatch(onChangeMode(themeState === 'light' ? 'dark' : 'light'));
+    handleStorage.setStorage('theme', themeState === 'light' ? 'dark' : 'light');
+  };
 
   return (
     <div className={styles.container}>
@@ -32,8 +44,8 @@ const Header = (props:HeaderProp) => {
       </div>
 
       {/* 切换 夜间或者日间模式按钮 */}
-      <div className={styles.switchThemeBtn}>
-        {themeState === 'dark' ? <i className="bx bxs-sun"></i> : <i className="bx bxs-moon"></i>}
+      <div className={styles.switchThemeBtn} onClick={() => onChangeThemeMode()}>
+        {themeState === 'light' ? <i className="bx bxs-moon"></i> : <i className="bx bxs-sun"></i>}
       </div>
     </div>
   );

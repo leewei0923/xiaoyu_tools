@@ -19,6 +19,7 @@ const Home: NextPage = () => {
   const handleStorage = new HandleStorage();
   const themeMode = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
+  console.log(themeMode)
 
   /**
    * theme: 更改主题样式
@@ -51,7 +52,9 @@ const Home: NextPage = () => {
    * @description: 初始化加载，保持主题的状态
    * @return {*}
    */
-  const initRender = () => {
+
+  // TODO: 会出现闪屏
+  const initRender = (): void => {
     const theme = handleStorage.getStorage('theme');
 
     if(theme !== 'light') {

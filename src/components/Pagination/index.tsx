@@ -1,5 +1,5 @@
 import { Left, Right } from '@icon-park/react';
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import styles from './pageination.module.scss';
 
 interface Pagination {
@@ -9,7 +9,7 @@ interface Pagination {
   hideOnSinglePage?: boolean; // 只有一页时是否隐藏分页器
   pageSize?: number; // 每页条数
   total?: number; // 数据总数
-  onChange?: Function
+  onChange?: Function;
 }
 
 export default function Index(props: Pagination) {
@@ -27,7 +27,7 @@ export default function Index(props: Pagination) {
     total = 0,
     onChange
   } = props;
-  const totalPage = Math.floor(total / (pageSize || defaultCurrent)) + 1; // 当前页面总数
+  const totalPage = Math.floor(total / (pageSize || defaultPageSize)) + 1; // 当前页面总数
   const pageinationBox = new Array<number>(totalPage).fill(0);
 
   /**
@@ -54,7 +54,7 @@ export default function Index(props: Pagination) {
       case 'decrement':
         return { page: state.page - 1 };
       case 'current':
-        return { page: action.currentCount  || 1 + 1 };
+        return { page: action.currentCount || 1 + 1 };
       default:
         throw new Error();
     }
@@ -62,18 +62,16 @@ export default function Index(props: Pagination) {
 
   const [state, dispatch] = useReducer(pageinationReducer, initialState);
 
-
-  
-  if(typeof onChange === 'function') {
-    onChange(state.page, (pageSize || defaultPageSize));
-  }
-
- 
+  useEffect(() => {
+    if (typeof onChange === 'function') {
+      onChange(state.page, pageSize || defaultPageSize);
+    }
+  }, [defaultPageSize, onChange, pageSize, state.page]);
 
   return (
     <>
       {hideOnSinglePage && totalPage === 1 ? (
-        ''
+        <div className={styles.container}></div>
       ) : (
         <div className={styles.container}>
           {state.page === 1 ? (

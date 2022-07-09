@@ -15,7 +15,10 @@ const GradientColorPalette: NextPage = () => {
    */
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (e: number) => {
-    setCurrentPage(e);
+    console.log(currentPage, ' | ', e);
+    if (currentPage !== e) {
+      setCurrentPage(e);
+    }
   };
 
   return (
