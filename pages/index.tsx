@@ -1,13 +1,14 @@
 import type { NextPage } from 'next';
-import { useEffect,  useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import classnames from 'classnames';
-import { Sun, Moon } from '@icon-park/react';
+import { IconMoonFill, IconSunFill } from '@arco-design/web-react/icon';
 import HandleStorage from '../src/utils/HandleStorage';
 import { useAppSelector, useAppDispatch } from '@src/redux/hooks';
 import { onChangeMode, selectTheme } from '@src/redux/theme/themeSlice';
+import { FormattedMessage } from 'react-intl'; // 项目国际化
 import styles from '../styles/Home.module.scss';
 
 const Home: NextPage = () => {
@@ -19,7 +20,6 @@ const Home: NextPage = () => {
   const handleStorage = new HandleStorage();
   const themeMode = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
-  console.log(themeMode)
 
   /**
    * theme: 更改主题样式
@@ -47,7 +47,6 @@ const Home: NextPage = () => {
     }
   };
 
-
   /**
    * @description: 初始化加载，保持主题的状态
    * @return {*}
@@ -57,12 +56,12 @@ const Home: NextPage = () => {
   const initRender = (): void => {
     const theme = handleStorage.getStorage('theme');
 
-    if(theme !== 'light') {
+    if (theme !== 'light') {
       setThemeState('dark');
       handleStorage.setStorage('theme', 'dark');
       dispatch(onChangeMode('dark'));
     }
-  }
+  };
 
   /**
    * theme: useEffect
@@ -85,16 +84,16 @@ const Home: NextPage = () => {
       <header className={styles.header} onClick={() => onChangeTheme()}>
         <div className={styles.switchThemeBtn}>
           {themeState === 'dark' ? (
-            <Sun className={styles.iconpark} theme="filled" size="20" fill="#fff" />
+            <IconMoonFill style={{ fontSize: '25px', color: 'white' }} />
           ) : (
-            <Moon className={styles.iconpark} theme="filled" size="20" fill="#fff" />
+            <IconSunFill style={{ fontSize: '25px', color: 'black' }} />
           )}
         </div>
       </header>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <span className={styles.grdientColorText}>xiaoyu&apos;s tools!</span>
+          <FormattedMessage id='welcome'/> <span className={styles.grdientColorText}><FormattedMessage id='xiaoyu_tools' /></span>
         </h1>
 
         <p className={styles.description}>

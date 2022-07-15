@@ -1,3 +1,11 @@
+@use '/styles/colors_dark.scss' as darkC;
+
+
+.dark {
+  background-color: darkC.$dark_background;
+  color: darkC.$dark_font;
+}
+
 .container {
   display: flex;
   flex-direction: column;

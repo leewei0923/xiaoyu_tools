@@ -1,4 +1,4 @@
-import { Left, Right } from '@icon-park/react';
+import { IconLeft, IconRight } from '@arco-design/web-react/icon';
 import React, { useEffect, useReducer } from 'react';
 import styles from './pageination.module.scss';
 
@@ -75,15 +75,11 @@ export default function Index(props: Pagination) {
       ) : (
         <div className={styles.container}>
           {state.page === 1 ? (
-            <Left
-              theme="outline"
-              // fill="#333"
+            <IconLeft
               className={styles.unleft}
             />
           ) : (
-            <Left
-              theme="outline"
-              // fill="#333"
+            <IconLeft
               className={styles.left}
               onClick={() => dispatch({ type: 'decrement' })}
             />
@@ -103,15 +99,12 @@ export default function Index(props: Pagination) {
           })}
 
           {state.page === totalPage ? (
-            <Right
-              theme="outline"
-              // fill="#333"
+            <IconRight
               className={styles.unright}
             />
           ) : (
-            <Right
-              theme="outline"
-              // fill="#333"
+            <IconRight
+
               className={styles.right}
               onClick={() => dispatch({ type: 'increment' })}
             />

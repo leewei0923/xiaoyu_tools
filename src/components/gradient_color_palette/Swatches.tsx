@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { RotationOne} from '@icon-park/react';
+import {IconDashboard} from '@arco-design/web-react/icon'
+import { Message } from '@arco-design/web-react';
 import styles from './swatches.module.scss';
 
 interface SwatchesColors {
@@ -74,6 +75,7 @@ export default function Swatches(props: Swatches) {
   const onCopyCss = async () => {
     const backgroundImage = `background-image: linear-gradient(${rangeValue === '' ? angle : rangeValue}deg, ${colorsRef.current[0]},  ${colorsRef.current[1]})`;
     navigator.clipboard.writeText(backgroundImage).then(() => console.log("成功写入剪贴板"));
+    Message.success("复制成功")
   }
 
   /**
@@ -101,7 +103,7 @@ export default function Swatches(props: Swatches) {
 
       {/* 颜色放置区 */}
       <div className={styles.footerOption}>
-        <RotationOne theme="outline" size="24" fill="#333"  />
+        <IconDashboard />
         <div className={styles.input_angle_container}>
           <input type="range" id='input_angle' step={1} name='input_angle' className={styles.input_angle} onChange={(e) => onRangeChange(e)} min={-360} max={360} defaultValue={angle} />
           <p>{rangeValue === '' ? angle : rangeValue}°</p>

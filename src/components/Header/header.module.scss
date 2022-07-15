@@ -1,4 +1,10 @@
 @use '/styles/colors.scss' as c;
+@use '/styles/colors_dark.scss' as darkC;
+
+.dark {
+  background-color: darkC.$dark_background;
+  color: darkC.$dark_font;
+}
 
 // header 容器
 .container {
@@ -32,11 +38,11 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background-color: #aeaeae;
+    // background-color: #aeaeae;
     font-size: 20px;
     position: absolute;
     right: 20px;
-
+    cursor: pointer;
     i {
       margin: 2px;
       color: white;

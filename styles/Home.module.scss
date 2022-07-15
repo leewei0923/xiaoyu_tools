@@ -1,11 +1,13 @@
+@use '../styles/colors_dark.scss' as darkC;
+
 .container {
   padding: 0 2rem;
   height: 100vh;
 }
 
 .dark {
-  background-color: #121212;
-  color: #fafafa;
+  background-color: darkC.$dark_background;
+  color: darkC.$dark_font;
 }
 
 .header {
@@ -19,7 +21,7 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background-color: #aeaeae;
+    // background-color: #aeaeae;
     // opacity: 0.8;
     position: absolute;
     right: 10px;
@@ -158,7 +160,7 @@
 
 .card p {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 

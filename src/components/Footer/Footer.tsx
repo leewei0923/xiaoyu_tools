@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useAppSelector, useAppDispatch } from '@src/redux/hooks';
+import { onChangeMode, selectTheme } from '@src/redux/theme/themeSlice';
+import classnames from 'classnames';
 import styles from './footer.module.scss';
 
 const linkData = [
@@ -17,8 +20,23 @@ const linkData = [
 ];
 
 export default function Footer() {
+
+  /**
+   * 公共部分
+   */
+  const themeState = useAppSelector(selectTheme);
+
+  /**
+   * desc: 用于 classnames 处理类名
+   */
+  const container = classnames({
+    [styles.container]: true,
+    [styles.dark]: themeState !== 'light',
+  })
+
+
   return (
-    <div className={styles.container}>
+    <div className={container}>
       {/* 其他选项 */}
       <div className={styles.link}>
         <div className={styles.otherLinks}>
