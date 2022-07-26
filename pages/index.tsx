@@ -111,10 +111,10 @@ const Home: NextPage = () => {
           </Link>
 
           {/* component demos */}
-          <Link href="/component_demos">
+          <Link href="/logoMaker">
             <a className={styles.card}>
-              <h2>Component Demos →</h2>
-              <p>Choosem which you like the componnet to apply to your site !</p>
+              <h2>MI Style Logo Maker→</h2>
+              <p>simple template to make your logo !</p>
             </a>
           </Link>
         </div>
