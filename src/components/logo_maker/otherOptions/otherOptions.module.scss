@@ -1,0 +1,44 @@
+.container {
+  width: 55%;
+  margin: auto;
+  .chooseStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h3 {
+      align-items: flex-start;
+    }
+    .colorList {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.colorList {
+  .colorItem {
+    margin: 5px 10px;
+    > input[type='radio'] {
+      display: none;
+    }
+
+    input[type='radio']:checked ~ label {
+      border: 2px solid #fe5f4e;
+    }
+    label {
+      display: block;
+      border-radius: 3px;
+      border: 2px solid #bebebe;
+      background: #fff;
+      color: #333;
+      font-size: 14px;
+      text-align: center;
+      padding: 8px 15px;
+      line-height: 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+}

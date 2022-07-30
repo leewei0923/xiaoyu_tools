@@ -1,0 +1,101 @@
+.container {
+  width: 30%;
+  height: 400px;
+  min-width: 400px;
+  background-color: #E0E0E0;
+  border-radius: 15px;
+  padding: 5px;
+  box-shadow:  20px 20px 60px #bebebe;
+  .topOptions {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    align-items: center;
+    font-weight: 600;
+
+    > p {
+      margin: 0 10px;
+      opacity: 0.7;
+    }
+
+    > button {
+      margin: 0 10px;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.6s;
+      font-size: 1.1rem;
+      &:hover {
+        transition: 0.6s;
+        color: chocolate;
+      }
+    }
+  }
+
+  .optionList {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+
+      .name {
+        width: 10%;
+        text-transform: capitalize;
+      }
+
+      input[type='range'] {
+        width: 75%;
+        -webkit-appearance: none;
+        color: #001f3f;
+        background-color: transparent;
+        appearance: none;
+        cursor: pointer;
+        position: relative;
+
+        &::after {
+          content: attr(data-value);
+          position: absolute;
+          padding: 5px;
+          right: -50px;
+          top: 0;
+          border-radius: 5px;
+          background-color: #001f3f;
+          color: #ffffff;
+        }
+      }
+
+      input[type='text'] {
+        border: 3px solid #001f3f;
+      }
+
+      [type='range']::-webkit-slider-container {
+        /*可以修改容器的若干样式*/
+        overflow: hidden;
+        height: 20px;
+      }
+      [type='range']::-webkit-slider-runnable-track {
+        /*可以修改轨道的若干样式*/
+        background-color: #001f3f;
+        height: 5px;
+        border-radius: 10px;
+      }
+      [type='range']::-webkit-slider-thumb {
+        /*可以修改滑块的若干样式*/
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height:15px;
+        border-radius: 50%;
+        background-color: #001f3f;
+        border: 1px solid transparent;
+        margin-top: -5px;
+      }
+    }
+  }
+}

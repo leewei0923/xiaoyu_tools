@@ -1,3 +1,20 @@
+@use '../colors_dark.scss' as darkC;
+
+
 .container {
-    
+  .logoMaker {
+    width: 100%;
+    // height: 60vh;
+  }
 }
+
+.photoContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dark {
+    background-color: darkC.$dark_background;
+    color: darkC.$dark_font;
+  }

@@ -11,6 +11,8 @@
 const zh_CN = {
   welcome: "欢迎来到",
   xiaoyu_tools: "小鱼工具箱"
+  // photoControl back
+  
 };
 export {
     zh_CN
