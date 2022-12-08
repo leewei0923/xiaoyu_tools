@@ -93,7 +93,10 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <FormattedMessage id='welcome'/> <span className={styles.grdientColorText}><FormattedMessage id='xiaoyu_tools' /></span>
+          <FormattedMessage id="welcome" />{' '}
+          <span className={styles.grdientColorText}>
+            <FormattedMessage id="xiaoyu_tools" />
+          </span>
         </h1>
 
         <p className={styles.description}>

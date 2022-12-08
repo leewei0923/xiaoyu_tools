@@ -1,6 +1,7 @@
 import { colors } from './colordata';
 import { useContext } from 'react';
 import { logoMakerOptionsContext, StatePropsType } from '../context';
+import { handleDomToImg } from '@src/utils/handleGeneratePicture';
 import styles from './otherOptions.module.scss';
 
 interface OtherOptionsPropsType {
@@ -22,9 +23,13 @@ export default function OtherOptions(props: OtherOptionsPropsType) {
 
     dispatchLogo({ type: 'backgroundOption', value: logoOptions });
     onRefresh();
-    console.log(color);
   };
 
+  const onDownImg = () => {
+    const width = parseInt(logoState.backgroundOption.width, 10);
+    const height = parseInt(logoState.backgroundOption.height, 10);
+    handleDomToImg('logoMaker', width, height);
+  };
   return (
     <div className={styles.container}>
       <section className={styles.chooseStyle}>
@@ -42,11 +47,15 @@ export default function OtherOptions(props: OtherOptionsPropsType) {
                   id={`${item.title + (index < 10 ? '0' + index : index + 1)}`}
                   onChange={(e) => onChangeColor(item.value)}
                 />
-                <label htmlFor={`${item.title + (index < 10 ? '0' + index : index + 1)}`}>{item.title}</label>
+                <label htmlFor={`${item.title + (index < 10 ? '0' + index : index + 1)}`} style={{backgroundColor:`${item.value}`}}>{item.value}</label>
               </div>
             );
           })}
         </div>
+      </section>
+
+      <section className={styles.btn}>
+        <button onClick={() => onDownImg()}>⇩ 下载到本地</button>
       </section>
     </div>
   );

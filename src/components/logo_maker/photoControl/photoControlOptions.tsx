@@ -34,17 +34,17 @@ export const photoControlOptions = [
   [
     {
       type: 'range',
-      value: '-165px',
-      name: 'top',
+      value: '20px',
+      name: 'marginTop',
       max: '300',
       min: '-300'
     },
     {
       type: 'range',
       value: '40px',
-      name: 'left',
-      max: '100',
-      min: '-100'
+      name: 'marginLeft',
+      max: '200',
+      min: '-200'
     },
     {
       type: 'range',

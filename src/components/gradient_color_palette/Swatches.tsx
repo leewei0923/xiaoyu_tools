@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import {IconDashboard} from '@arco-design/web-react/icon'
+import { IconDashboard } from '@arco-design/web-react/icon';
 import { Message } from '@arco-design/web-react';
 import styles from './swatches.module.scss';
 
@@ -24,7 +24,6 @@ export default function Swatches(props: Swatches) {
    *
    */
   const { name, angle, colors } = props;
-  
 
   /**
    * theme: input color 颜色改变的触发的事件
@@ -33,8 +32,8 @@ export default function Swatches(props: Swatches) {
    * time: 2022.06.08
    * author: leewei
    */
-   const colorsRef = useRef(new Array<string>); // 用于保存数组
-   const [colorText, setColorText] = useState(''); // 颜色更改时候，页面更新
+  const colorsRef = useRef(new Array<string>()); // 用于保存数组
+  const [colorText, setColorText] = useState(''); // 颜色更改时候，页面更新
   const onColorChange = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
     colorsRef.current[i] = e.target.value;
     setColorText(e.target.value);
@@ -45,26 +44,25 @@ export default function Swatches(props: Swatches) {
    * time: 2022.06.08
    * author: leewei
    */
-  const init = ():void => {
+  const init = (): void => {
     for (const x of colors) {
       if (!colorsRef.current.includes(x.hex) && colorsRef.current.length < colors.length) {
-      colorsRef.current.push(x.hex);
+        colorsRef.current.push(x.hex);
       }
     }
-  }
+  };
   init();
-
 
   /**
    * theme: input range 改变事件
-   * time: 2022.06.09 
+   * time: 2022.06.09
    * author: leewei
    */
   const [rangeValue, setRangeValue] = useState('');
 
-  const onRangeChange = (e:React.ChangeEvent<HTMLInputElement>):void => {
+  const onRangeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setRangeValue(e.target.value);
-  }
+  };
 
   /**
    * theme: 点击复制粘贴
@@ -73,17 +71,17 @@ export default function Swatches(props: Swatches) {
    */
 
   const onCopyCss = async () => {
-    const backgroundImage = `background-image: linear-gradient(${rangeValue === '' ? angle : rangeValue}deg, ${colorsRef.current[0]},  ${colorsRef.current[1]})`;
-    navigator.clipboard.writeText(backgroundImage).then(() => console.log("成功写入剪贴板"));
-    Message.success("复制成功")
-  }
+    const backgroundImage = `background-image: linear-gradient(${rangeValue === '' ? angle : rangeValue}deg, ${
+      colorsRef.current[0]
+    },  ${colorsRef.current[1]})`;
+    navigator.clipboard.writeText(backgroundImage).then(() => console.log('成功写入剪贴板'));
+    Message.success('复制成功');
+  };
 
   /**
    * useEffect
    */
-  useEffect(() => {
-    
-  }, [colorText,rangeValue]);
+  useEffect(() => {}, [colorText, rangeValue]);
 
   return (
     <div className={styles.container}>
@@ -98,32 +96,47 @@ export default function Swatches(props: Swatches) {
           style={{
             backgroundImage: `linear-gradient(${rangeValue === '' ? angle : rangeValue}deg, ${colorsRef.current})`
           }}
-        ></div>
+        >
+          
+          <p className={styles.showCssCode}>{`点击copy css可以直接复制\nbackground: linear-gradient(${
+            rangeValue === '' ? angle : rangeValue
+          }deg, ${colorsRef.current})`}</p>
+        </div>
       </div>
 
       {/* 颜色放置区 */}
       <div className={styles.footerOption}>
         <IconDashboard />
         <div className={styles.input_angle_container}>
-          <input type="range" id='input_angle' step={1} name='input_angle' className={styles.input_angle} onChange={(e) => onRangeChange(e)} min={-360} max={360} defaultValue={angle} />
+          <input
+            type="range"
+            id="input_angle"
+            step={1}
+            name="input_angle"
+            className={styles.input_angle}
+            onChange={(e) => onRangeChange(e)}
+            min={-360}
+            max={360}
+            defaultValue={angle}
+          />
           <p>{rangeValue === '' ? angle : rangeValue}°</p>
         </div>
-        
+
         {colors.map((item, i) => {
           return (
             <Fragment key={'option' + item.name}>
-              <div className={styles.circleBack} style={{background:`${colorsRef.current[i]}`}}>
+              <div className={styles.circleBack} style={{ background: `${colorsRef.current[i]}` }}>
                 <input
-                type="color"
-                id={item.name}
-                name={item.name}
-                defaultValue={item.hex}
-                style={{background:`${colorsRef.current[i]}`}}
-                onChange={(e) => onColorChange(e, i)}
-                title={`${item.name} & ${colorsRef.current[i]}`}
-              />
+                  type="color"
+                  id={item.name}
+                  name={item.name}
+                  defaultValue={item.hex}
+                  style={{ background: `${colorsRef.current[i]}` }}
+                  onChange={(e) => onColorChange(e, i)}
+                  title={`${item.name} & ${colorsRef.current[i]}`}
+                />
               </div>
-              
+
               {/* <label htmlFor={item.name}>{item.hex}</label> */}
             </Fragment>
           );
@@ -131,7 +144,9 @@ export default function Swatches(props: Swatches) {
 
         {/* 复制 */}
 
-        <p className={styles.copyBtn} onClick={() => onCopyCss()}>Copy CSS</p>
+        <p className={styles.copyBtn} onClick={() => onCopyCss()}>
+          COPY CSS
+        </p>
       </div>
     </div>
   );

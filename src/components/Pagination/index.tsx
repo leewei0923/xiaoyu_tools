@@ -1,5 +1,6 @@
 import { IconLeft, IconRight } from '@arco-design/web-react/icon';
 import React, { useEffect, useReducer } from 'react';
+import { useRef } from 'react';
 import styles from './pageination.module.scss';
 
 interface Pagination {
@@ -28,7 +29,8 @@ export default function Index(props: Pagination) {
     onChange
   } = props;
   const totalPage = Math.floor(total / (pageSize || defaultPageSize)) + 1; // 当前页面总数
-  const pageinationBox = new Array<number>(totalPage).fill(0);
+  const pageinationBox = new Array<number>(totalPage).fill(0).map((item, i) => i);
+  const currentCountRef = useRef(defaultCurrent);
 
   /**
    * theme: 按钮操作
@@ -50,14 +52,25 @@ export default function Index(props: Pagination) {
   function pageinationReducer(state: pageinationState, action: pageinationAction): pageinationState {
     switch (action.type) {
       case 'increment':
+        currentCountRef.current = state.page + 1;
         return { page: state.page + 1 };
       case 'decrement':
+        currentCountRef.current = state.page - 1;
         return { page: state.page - 1 };
       case 'current':
+        currentCountRef.current = action.currentCount || 1 + 1;
         return { page: action.currentCount || 1 + 1 };
       default:
         throw new Error();
     }
+  }
+
+  // 分页超出部分的处理
+  let leftIndex = Math.floor(currentCountRef.current  / 10) * 9; // 分页左边界
+  let rightIndex = Math.floor(currentCountRef.current  / 10) * 10 + 9; // 分页右边界
+  if(rightIndex > totalPage) {
+    rightIndex = totalPage;
+    leftIndex = rightIndex - 10;
   }
 
   const [state, dispatch] = useReducer(pageinationReducer, initialState);
@@ -75,39 +88,27 @@ export default function Index(props: Pagination) {
       ) : (
         <div className={styles.container}>
           {state.page === 1 ? (
-            <IconLeft
-              className={styles.unleft}
-            />
+            <IconLeft className={styles.unleft} />
           ) : (
-            <IconLeft
-              className={styles.left}
-              onClick={() => dispatch({ type: 'decrement' })}
-            />
+            <IconLeft className={styles.left} onClick={() => dispatch({ type: 'decrement' })} />
           )}
-
-          {pageinationBox.map((item, i) => {
+          {pageinationBox.slice(leftIndex, rightIndex).map((item) => {
             return (
               <p
-                style={{ color: `${state.page === i + 1 ? '#4D8BF4' : '#494949'}` }}
-                key={item + i + 'pagination'}
+                style={{ color: `${state.page === item + 1 ? '#4D8BF4' : '#494949'}` }}
+                key={item + item + 'pagination'}
                 className={styles.option}
-                onClick={() => dispatch({ type: 'current', currentCount: i + 1 })}
+                onClick={() => dispatch({ type: 'current', currentCount: item + 1 })}
               >
-                {i + 1}
+                {item + 1}
               </p>
             );
           })}
 
           {state.page === totalPage ? (
-            <IconRight
-              className={styles.unright}
-            />
+            <IconRight className={styles.unright} />
           ) : (
-            <IconRight
-
-              className={styles.right}
-              onClick={() => dispatch({ type: 'increment' })}
-            />
+            <IconRight className={styles.right} onClick={() => dispatch({ type: 'increment' })} />
           )}
         </div>
       )}

@@ -19,7 +19,7 @@ export default function PhotoContainer(props: PhotoContainerPropsType) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.logo} style={{...backgroundOption}}>
+      <div className={styles.logo} style={{...backgroundOption}} id="logoMaker">
         <p contentEditable style={{...fontOption}} suppressContentEditableWarning={true}>YU</p>
       </div>
     </div>

@@ -10,8 +10,8 @@ interface backgroundOptionType {
 }
 
 interface fontOptionType {
-  top: string;
-  left: string;
+  marginTop: string;
+  marginLeft: string;
   fontWeight: string;
   fontSize: string;
   fontFamily: string;
@@ -39,8 +39,8 @@ export const initalOptions = {
     backgroundImage: 'none'
   },
   fontOption: {
-    top: '-165px',
-    left: '40px',
+    marginTop: '20px',
+    marginLeft: '40px',
     fontWeight: '500',
     fontSize: '180px',
     fontFamily: 'Dengxian',
